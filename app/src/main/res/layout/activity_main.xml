@@ -241,6 +241,129 @@
             </LinearLayout>
         </LinearLayout>
 
+        <!-- Shortcuts & Gestures Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/bg_glass_card"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:text="⚡ 3 Ways to Ask ScreenGPT"
+                android:textColor="@color/text_primary"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <!-- Method 1: Quick Settings Tile -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingTop="6dp"
+                android:paddingBottom="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1. Quick Settings Tile"
+                    android:textColor="@color/text_primary"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="Swipe down your control center, tap Edit/Pen, and drag the 'ScreenGPT' tile into your quick buttons for 1-swipe screen capture."
+                    android:textColor="@color/text_secondary"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/glass_stroke" />
+
+            <!-- Method 2: Digital Assistant (Power Button / Corner Swipe) -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2. Hold Power Button / Corner Swipe"
+                        android:textColor="@color/text_primary"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="Set ScreenGPT as your default Digital Assistant to trigger via hardware gesture."
+                        android:textColor="@color/text_secondary"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnSetAssistant"
+                    style="@style/Widget.Material3.Button.TonalButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="Set Assistant"
+                    android:textColor="@color/brand_emerald"
+                    android:textSize="11sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/glass_stroke" />
+
+            <!-- Method 3: Floating Bubble -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingTop="8dp"
+                android:paddingBottom="4dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3. Floating On-Screen Bubble"
+                    android:textColor="@color/text_primary"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="Tap 'Start Floating Widget' above to keep the 1-tap optical viewfinder floating over your apps."
+                    android:textColor="@color/text_secondary"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
         <!-- How It Works Card -->
         <LinearLayout
             android:layout_width="match_parent"
@@ -277,7 +400,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:lineSpacingMultiplier="1.4"
-                android:text="1. Tap 'Start Floating Widget' above.\n2. Switch to any app (Chrome, Twitter, YouTube, PDF, Games).\n3. Tap the floating ScreenGPT bubble on your screen.\n4. ScreenGPT instantly captures the screen, copies the image to your clipboard, and launches the official ChatGPT app.\n5. Tap the screenshot chip above your keyboard and ask your question!"
+                android:text="1. Trigger via Quick Settings Tile, Power Button gesture, or Floating Bubble.\n2. ScreenGPT instantly grabs the screen in 20ms and copies the screenshot to your clipboard.\n3. Launches official ChatGPT directly.\n4. Tap the screenshot chip on your keyboard and ask!"
                 android:textColor="@color/text_secondary"
                 android:textSize="13sp" />
         </LinearLayout>

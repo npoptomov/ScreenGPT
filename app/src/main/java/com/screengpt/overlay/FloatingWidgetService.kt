@@ -78,20 +78,30 @@ class FloatingWidgetService : Service() {
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        if (intent?.action == ACTION_CAPTURE_PERMISSION) {
-            val resultCode = intent.getIntExtra(EXTRA_RESULT_CODE, 0)
-            @Suppress("DEPRECATION")
-            val resultData = intent.getParcelableExtra<Intent>(EXTRA_RESULT_DATA)
-            if (resultCode != 0 && resultData != null) {
-                savedResultCode = resultCode
-                savedResultData = resultData
+        when (intent?.action) {
+            ACTION_CAPTURE_PERMISSION -> {
+                val resultCode = intent.getIntExtra(EXTRA_RESULT_CODE, 0)
+                @Suppress("DEPRECATION")
+                val resultData = intent.getParcelableExtra<Intent>(EXTRA_RESULT_DATA)
+                if (resultCode != 0 && resultData != null) {
+                    savedResultCode = resultCode
+                    savedResultData = resultData
 
-                startAsForegroundService(isMediaProjection = true)
-                initMediaProjection(resultCode, resultData)
+                    startAsForegroundService(isMediaProjection = true)
+                    initMediaProjection(resultCode, resultData)
 
-                if (isPendingCaptureOnPermission) {
-                    isPendingCaptureOnPermission = false
+                    if (isPendingCaptureOnPermission) {
+                        isPendingCaptureOnPermission = false
+                        performScreenCapture()
+                    }
+                }
+            }
+            ACTION_TRIGGER_CAPTURE -> {
+                if (hasCapturePermission()) {
                     performScreenCapture()
+                } else {
+                    isPendingCaptureOnPermission = true
+                    CapturePermissionActivity.requestPermission(this)
                 }
             }
         }
@@ -464,6 +474,7 @@ class FloatingWidgetService : Service() {
 
     companion object {
         const val ACTION_CAPTURE_PERMISSION = "com.screengpt.overlay.ACTION_CAPTURE_PERMISSION"
+        const val ACTION_TRIGGER_CAPTURE = "com.screengpt.overlay.ACTION_TRIGGER_CAPTURE"
         const val EXTRA_RESULT_CODE = "extra_result_code"
         const val EXTRA_RESULT_DATA = "extra_result_data"
 
@@ -479,6 +490,27 @@ class FloatingWidgetService : Service() {
 
         fun isRunning(): Boolean = activeServiceInstance != null
         fun hasCapturePermission(): Boolean = savedResultCode != 0 && savedResultData != null
+
+        fun triggerCapture(context: Context) {
+            activeServiceInstance?.let { service ->
+                if (hasCapturePermission()) {
+                    service.performScreenCapture()
+                } else {
+                    isPendingCaptureOnPermission = true
+                    CapturePermissionActivity.requestPermission(context)
+                }
+            } ?: run {
+                isPendingCaptureOnPermission = true
+                val intent = Intent(context, FloatingWidgetService::class.java).apply {
+                    action = ACTION_TRIGGER_CAPTURE
+                }
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    context.startForegroundService(intent)
+                } else {
+                    context.startService(intent)
+                }
+            }
+        }
 
         fun start(context: Context) {
             val intent = Intent(context, FloatingWidgetService::class.java)

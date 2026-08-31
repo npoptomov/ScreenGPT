@@ -44,6 +44,9 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            <meta-data
+                android:name="android.app.shortcuts"
+                android:resource="@xml/shortcuts" />
         </activity>
 
         <!-- Transparent Trampoline Activity for MediaProjection Consent -->
@@ -53,6 +56,44 @@
             android:theme="@style/Theme.ScreenChatGPTOverlay.Transparent"
             android:launchMode="singleInstance"
             android:excludeFromRecents="true" />
+
+        <!-- Digital Assistant Trigger (Hold Power Button / Swipe from Corner) -->
+        <activity
+            android:name=".AssistActivity"
+            android:exported="true"
+            android:theme="@style/Theme.ScreenChatGPTOverlay.Transparent"
+            android:launchMode="singleInstance"
+            android:excludeFromRecents="true">
+            <intent-filter>
+                <action android:name="android.intent.action.ASSIST" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <!-- 1-Tap Home Screen Shortcut Activity -->
+        <activity
+            android:name=".ShortcutActivity"
+            android:exported="true"
+            android:theme="@style/Theme.ScreenChatGPTOverlay.Transparent"
+            android:launchMode="singleInstance"
+            android:excludeFromRecents="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <!-- Quick Settings Tile (Swipe down from top and tap) -->
+        <service
+            android:name=".ScreenGptTileService"
+            android:exported="true"
+            android:icon="@drawable/ic_screen_aperture_lens"
+            android:label="ScreenGPT"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+        </service>
 
         <!-- Foreground Service that manages Floating Bubble and Overlays -->
         <service

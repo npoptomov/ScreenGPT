@@ -44,5 +44,9 @@
     <string name="btn_close">Close</string>
     <string name="copied_to_clipboard">Copied to clipboard!</string>
     <string name="error_no_api_key">No OpenAI API key found. Please open ScreenGPT app to set your API key.</string>
-    <string name="error_capture_failed">Screen capture failed. Please ensure screen capture permission is granted.</string>
+    <string name="error_capture_failed">Screen capture failed</string>
+    <string name="error_api_failed">OpenAI request failed</string>
+
+    <string name="shortcut_short_label">Ask Screen</string>
+    <string name="shortcut_long_label">Ask ChatGPT About Screen</string>
 </resources>

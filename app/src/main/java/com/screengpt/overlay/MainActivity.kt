@@ -87,6 +87,22 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        // Set Digital Assistant Button
+        binding.btnSetAssistant.setOnClickListener {
+            try {
+                val intent = Intent(Settings.ACTION_VOICE_INPUT_SETTINGS)
+                startActivity(intent)
+            } catch (e: Exception) {
+                try {
+                    val intent = Intent(Settings.ACTION_MANAGE_DEFAULT_APPS_SETTINGS)
+                    startActivity(intent)
+                } catch (e2: Exception) {
+                    val intent = Intent(Settings.ACTION_SETTINGS)
+                    startActivity(intent)
+                }
+            }
+        }
+
         // Toggle Floating Service
         binding.btnToggleService.setOnClickListener {
             if (!Settings.canDrawOverlays(this)) {
