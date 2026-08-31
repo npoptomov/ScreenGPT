@@ -15,6 +15,9 @@ import android.media.projection.MediaProjection
 import android.media.projection.MediaProjectionManager
 import android.os.Build
 import android.os.IBinder
+import android.os.VibrationEffect
+import android.os.Vibrator
+import android.os.VibratorManager
 import android.util.DisplayMetrics
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -22,8 +25,11 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.WindowManager
 import android.view.animation.DecelerateInterpolator
+import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.core.app.NotificationCompat
+import androidx.core.content.ContextCompat
 import com.screengpt.overlay.bridge.ChatGPTBridgeHelper
 import com.screengpt.overlay.capture.ScreenCaptureManager
 import com.screengpt.overlay.data.PreferencesManager
@@ -34,6 +40,7 @@ import kotlinx.coroutines.cancel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlin.math.abs
+import kotlin.math.hypot
 
 class FloatingWidgetService : Service() {
 
@@ -46,10 +53,14 @@ class FloatingWidgetService : Service() {
 
     // Overlay Views
     private var bubbleView: View? = null
+    private var dismissView: View? = null
     private lateinit var bubbleParams: WindowManager.LayoutParams
+    private lateinit var dismissParams: WindowManager.LayoutParams
 
     private var screenWidth = 1080
     private var screenHeight = 2400
+    private var isOverDismissTarget = false
+    private var hasVibratedForDismiss = false
 
     override fun onBind(intent: Intent?): IBinder? = null
 
@@ -75,7 +86,6 @@ class FloatingWidgetService : Service() {
                 savedResultCode = resultCode
                 savedResultData = resultData
 
-                // Now that we have the projection token, escalate foreground service to mediaProjection
                 startAsForegroundService(isMediaProjection = true)
                 initMediaProjection(resultCode, resultData)
 
@@ -153,7 +163,7 @@ class FloatingWidgetService : Service() {
     private fun initOverlayViews() {
         val inflater = LayoutInflater.from(this)
 
-        // Floating Bubble View
+        // 1. Floating Bubble View
         bubbleView = inflater.inflate(R.layout.overlay_floating_bubble, null)
         bubbleParams = WindowManager.LayoutParams(
             WindowManager.LayoutParams.WRAP_CONTENT,
@@ -167,8 +177,24 @@ class FloatingWidgetService : Service() {
             y = screenHeight / 3
         }
 
+        // 2. Dismiss Target View at Bottom Center
+        dismissView = inflater.inflate(R.layout.overlay_dismiss_target, null)
+        dismissParams = WindowManager.LayoutParams(
+            WindowManager.LayoutParams.WRAP_CONTENT,
+            WindowManager.LayoutParams.WRAP_CONTENT,
+            WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,
+            WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE or WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+            PixelFormat.TRANSLUCENT
+        ).apply {
+            gravity = Gravity.BOTTOM or Gravity.CENTER_HORIZONTAL
+            y = 80
+        }
+        dismissView?.visibility = View.GONE
+
         setupBubbleTouchListener()
+
         try {
+            windowManager.addView(dismissView, dismissParams)
             windowManager.addView(bubbleView, bubbleParams)
         } catch (e: Exception) {
             e.printStackTrace()
@@ -194,18 +220,24 @@ class FloatingWidgetService : Service() {
                         initialTouchX = event.rawX
                         initialTouchY = event.rawY
                         isClick = true
+                        isOverDismissTarget = false
+                        hasVibratedForDismiss = false
                         return true
                     }
                     MotionEvent.ACTION_MOVE -> {
                         val dx = event.rawX - initialTouchX
                         val dy = event.rawY - initialTouchY
 
-                        if (abs(dx) > 10 || abs(dy) > 10) {
-                            isClick = false
+                        if (abs(dx) > 12 || abs(dy) > 12) {
+                            if (isClick) {
+                                isClick = false
+                                showDismissTarget()
+                            }
                         }
 
                         bubbleParams.x = (initialX + dx).toInt()
                         bubbleParams.y = (initialY + dy).toInt()
+
                         try {
                             if (bubbleView?.isAttachedToWindow == true) {
                                 windowManager.updateViewLayout(bubbleView, bubbleParams)
@@ -213,11 +245,18 @@ class FloatingWidgetService : Service() {
                         } catch (e: Exception) {
                             // Ignore
                         }
+
+                        if (!isClick) {
+                            checkDismissHover(event.rawX, event.rawY)
+                        }
                         return true
                     }
                     MotionEvent.ACTION_UP -> {
+                        hideDismissTarget()
                         if (isClick) {
                             onBubbleClicked()
+                        } else if (isOverDismissTarget) {
+                            dismissWidget()
                         } else {
                             snapBubbleToEdge()
                         }
@@ -227,6 +266,102 @@ class FloatingWidgetService : Service() {
                 return false
             }
         })
+    }
+
+    private fun showDismissTarget() {
+        dismissView?.let { view ->
+            view.visibility = View.VISIBLE
+            view.alpha = 0f
+            view.animate().alpha(1f).setDuration(200).start()
+        }
+    }
+
+    private fun hideDismissTarget() {
+        dismissView?.let { view ->
+            view.animate().alpha(0f).setDuration(200).withEndAction {
+                view.visibility = View.GONE
+                resetDismissTargetState()
+            }.start()
+        }
+    }
+
+    private fun checkDismissHover(rawX: Float, rawY: Float) {
+        val targetX = screenWidth / 2f
+        val targetY = screenHeight - 160f
+        val dist = hypot((rawX - targetX).toDouble(), (rawY - targetY).toDouble())
+
+        if (dist < 180) {
+            if (!isOverDismissTarget) {
+                isOverDismissTarget = true
+                highlightDismissTarget(true)
+                triggerHaptic()
+            }
+        } else {
+            if (isOverDismissTarget) {
+                isOverDismissTarget = false
+                highlightDismissTarget(false)
+            }
+        }
+    }
+
+    private fun highlightDismissTarget(active: Boolean) {
+        val view = dismissView ?: return
+        val ivIcon = view.findViewById<ImageView>(R.id.ivDismissIcon) ?: return
+        val tvLabel = view.findViewById<TextView>(R.id.tvDismissLabel) ?: return
+
+        if (active) {
+            ivIcon.setBackgroundResource(R.drawable.bg_dismiss_target_active)
+            ivIcon.setColorFilter(ContextCompat.getColor(this, R.color.white))
+            ivIcon.animate().scaleX(1.2f).scaleY(1.2f).setDuration(150).start()
+            tvLabel.text = "Release to remove"
+            tvLabel.setTextColor(ContextCompat.getColor(this, R.color.white))
+            tvLabel.setBackgroundResource(R.drawable.bg_chip_selected)
+        } else {
+            resetDismissTargetState()
+        }
+    }
+
+    private fun resetDismissTargetState() {
+        val view = dismissView ?: return
+        val ivIcon = view.findViewById<ImageView>(R.id.ivDismissIcon) ?: return
+        val tvLabel = view.findViewById<TextView>(R.id.tvDismissLabel) ?: return
+
+        ivIcon.setBackgroundResource(R.drawable.bg_dismiss_target_normal)
+        ivIcon.setColorFilter(ContextCompat.getColor(this, R.color.status_error))
+        ivIcon.animate().scaleX(1.0f).scaleY(1.0f).setDuration(150).start()
+        tvLabel.text = "Drag here to remove"
+        tvLabel.setTextColor(ContextCompat.getColor(this, R.color.text_secondary))
+        tvLabel.setBackgroundResource(R.drawable.bg_chip_unselected)
+    }
+
+    private fun triggerHaptic() {
+        if (!hasVibratedForDismiss) {
+            hasVibratedForDismiss = true
+            try {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                    val vibratorManager = getSystemService(Context.VIBRATOR_MANAGER_SERVICE) as VibratorManager
+                    vibratorManager.defaultVibrator.vibrate(VibrationEffect.createPredefined(VibrationEffect.EFFECT_HEAVY_CLICK))
+                } else {
+                    @Suppress("DEPRECATION")
+                    val vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        vibrator.vibrate(VibrationEffect.createOneShot(40, VibrationEffect.DEFAULT_AMPLITUDE))
+                    } else {
+                        @Suppress("DEPRECATION")
+                        vibrator.vibrate(40)
+                    }
+                }
+            } catch (e: Exception) {
+                // Ignore
+            }
+        }
+    }
+
+    private fun dismissWidget() {
+        bubbleView?.animate()?.scaleX(0f)?.scaleY(0f)?.alpha(0f)?.setDuration(200)?.withEndAction {
+            Toast.makeText(this, "ScreenGPT widget removed", Toast.LENGTH_SHORT).show()
+            stopSelf()
+        }?.start()
     }
 
     private fun snapBubbleToEdge() {
@@ -305,6 +440,7 @@ class FloatingWidgetService : Service() {
 
         try {
             bubbleView?.let { if (it.isAttachedToWindow) windowManager.removeView(it) }
+            dismissView?.let { if (it.isAttachedToWindow) windowManager.removeView(it) }
         } catch (e: Exception) {
             // Ignore
         }

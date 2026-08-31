@@ -1,0 +1,33 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+
+    <!-- Screen Viewfinder Brackets -->
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="2.5"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:fillColor="#00000000"
+        android:pathData="M 8,14 L 8,9 C 8,8.45 8.45,8 9,8 L 14,8 M 34,8 L 39,8 C 39.55,8 40,8.45 40,9 L 40,14 M 40,34 L 40,39 C 40,39.55 39.55,40 39,40 L 34,40 M 14,40 L 9,40 C 8.45,40 8,39.55 8,39 L 8,34" />
+
+    <!-- AI Vision Iris Outer Oval -->
+    <path
+        android:strokeColor="#67E8F9"
+        android:strokeWidth="2.0"
+        android:fillColor="#2638BDF8"
+        android:pathData="M 12,24 C 15,16 33,16 36,24 C 33,32 15,32 12,24 Z" />
+
+    <!-- Center AI Glowing Core Star / Pupil -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M 24,17 C 24,21 21,24 17,24 C 21,24 24,27 24,31 C 24,27 27,24 31,24 C 27,24 24,21 24,17 Z" />
+
+    <!-- Center Pupil Dot -->
+    <path
+        android:fillColor="#A855F7"
+        android:pathData="M 24,22.5 A 1.5,1.5 0 1,0 24,25.5 A 1.5,1.5 0 1,0 24,22.5 Z" />
+
+</vector>

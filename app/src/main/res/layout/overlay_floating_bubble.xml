@@ -7,7 +7,7 @@
     android:clickable="true"
     android:focusable="true">
 
-    <!-- ScreenGPT Floating AI Bubble -->
+    <!-- ScreenGPT Floating AI Vision Bubble -->
     <ImageView
         android:id="@+id/ivBubbleIcon"
         android:layout_width="58dp"
@@ -15,8 +15,8 @@
         android:background="@drawable/bg_floating_bubble"
         android:contentDescription="ScreenGPT Bubble"
         android:elevation="10dp"
-        android:padding="11dp"
+        android:padding="10dp"
         android:scaleType="centerInside"
-        android:src="@drawable/ic_screen_gpt_bubble" />
+        android:src="@drawable/ic_screen_ai_eye" />
 
 </FrameLayout>
