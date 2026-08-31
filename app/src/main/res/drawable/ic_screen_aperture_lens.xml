@@ -4,52 +4,40 @@
     android:viewportWidth="48"
     android:viewportHeight="48">
 
-    <!-- 1. Soft dark shadow outline for high contrast on light screens -->
+    <!-- 1. Sleek Dark Rounded Square Viewfinder Tile (Non-transparent inside, transparent outside) -->
     <path
-        android:strokeColor="#80000000"
-        android:strokeWidth="4.0"
+        android:fillColor="#E6090D16"
+        android:strokeColor="#66FFFFFF"
+        android:strokeWidth="1.2"
+        android:pathData="M 14,8 L 34,8 C 37.31,8 40,10.69 40,14 L 40,34 C 40,37.31 37.31,40 34,40 L 14,40 C 10.69,40 8,37.31 8,34 L 8,14 C 8,10.69 10.69,8 14,8 Z" />
+
+    <!-- 2. Screen Viewfinder Corner Brackets in Pure White -->
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="2.4"
         android:strokeLineCap="round"
         android:strokeLineJoin="round"
         android:fillColor="#00000000"
-        android:pathData="M 8,15 L 8,9 C 8,8.45 8.45,8 9,8 L 15,8 M 33,8 L 39,8 C 39.55,8 40,8.45 40,9 L 40,15 M 40,33 L 40,39 C 40,39.55 39.55,40 39,40 L 33,40 M 15,40 L 9,40 C 8.45,40 8,39.55 8,39 L 8,33" />
+        android:pathData="M 8,15 L 8,14 C 8,10.69 10.69,8 14,8 L 15,8 M 33,8 L 34,8 C 37.31,8 40,10.69 40,14 L 40,15 M 40,33 L 40,34 C 40,37.31 37.31,40 34,40 L 33,40 M 15,40 L 14,40 C 10.69,40 8,37.31 8,34 L 8,33" />
 
-    <path
-        android:strokeColor="#80000000"
-        android:strokeWidth="3.4"
-        android:strokeLineCap="round"
-        android:fillColor="#00000000"
-        android:pathData="M 24,14 A 10,10 0 1,0 24,34 A 10,10 0 1,0 24,14 Z M 24,14 L 31,21 M 34,24 L 27,31 M 24,34 L 17,27 M 14,24 L 21,17" />
-
-    <path
-        android:fillColor="#80000000"
-        android:pathData="M 24,21 A 3,3 0 1,0 24,27 A 3,3 0 1,0 24,21 Z" />
-
-    <!-- 2. Crisp Pure White Optical Screen Lens Foreground -->
+    <!-- 3. Center Precision Camera Aperture / Optical Lens Circle -->
     <path
         android:strokeColor="#FFFFFF"
-        android:strokeWidth="2.8"
-        android:strokeLineCap="round"
-        android:strokeLineJoin="round"
+        android:strokeWidth="2.0"
         android:fillColor="#00000000"
-        android:pathData="M 8,15 L 8,9 C 8,8.45 8.45,8 9,8 L 15,8 M 33,8 L 39,8 C 39.55,8 40,8.45 40,9 L 40,15 M 40,33 L 40,39 C 40,39.55 39.55,40 39,40 L 33,40 M 15,40 L 9,40 C 8.45,40 8,39.55 8,39 L 8,33" />
+        android:pathData="M 24,15.5 A 8.5,8.5 0 1,0 24,32.5 A 8.5,8.5 0 1,0 24,15.5 Z" />
 
+    <!-- 4. Precision Optical Lens Aperture Blades -->
     <path
         android:strokeColor="#FFFFFF"
-        android:strokeWidth="2.2"
-        android:strokeLineCap="round"
-        android:strokeLineJoin="round"
-        android:fillColor="#00000000"
-        android:pathData="M 24,14 A 10,10 0 1,0 24,34 A 10,10 0 1,0 24,14 Z" />
-
-    <path
-        android:strokeColor="#FFFFFF"
-        android:strokeWidth="1.8"
+        android:strokeWidth="1.6"
         android:strokeLineCap="round"
         android:fillColor="#00000000"
-        android:pathData="M 24,14 L 31,21 M 34,24 L 27,31 M 24,34 L 17,27 M 14,24 L 21,17" />
+        android:pathData="M 24,15.5 L 30,21.5 M 32.5,24 L 26.5,30 M 24,32.5 L 18,26.5 M 15.5,24 L 21.5,18" />
 
+    <!-- 5. Center Optical Sensor Focus Core -->
     <path
         android:fillColor="#FFFFFF"
-        android:pathData="M 24,21.5 A 2.5,2.5 0 1,0 24,26.5 A 2.5,2.5 0 1,0 24,21.5 Z" />
+        android:pathData="M 24,22 A 2,2 0 1,0 24,26 A 2,2 0 1,0 24,22 Z" />
 
 </vector>
