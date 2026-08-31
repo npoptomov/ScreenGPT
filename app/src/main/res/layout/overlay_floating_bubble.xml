@@ -7,16 +7,16 @@
     android:clickable="true"
     android:focusable="true">
 
-    <!-- Minimalist Monochrome Floating AI Bubble -->
+    <!-- Minimalist White & Black Optical Screen Bubble -->
     <ImageView
         android:id="@+id/ivBubbleIcon"
         android:layout_width="58dp"
         android:layout_height="58dp"
         android:background="@drawable/bg_floating_bubble"
         android:contentDescription="ScreenGPT Bubble"
-        android:elevation="12dp"
+        android:elevation="14dp"
         android:padding="11dp"
         android:scaleType="centerInside"
-        android:src="@drawable/ic_screen_gpt_mono" />
+        android:src="@drawable/ic_screen_aperture_lens" />
 
 </FrameLayout>

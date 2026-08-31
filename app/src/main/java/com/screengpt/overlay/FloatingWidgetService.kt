@@ -177,17 +177,17 @@ class FloatingWidgetService : Service() {
             y = screenHeight / 3
         }
 
-        // 2. Dismiss Target View at Bottom Center
+        // 2. Dismiss Target View with Full Width (Never clipped)
         dismissView = inflater.inflate(R.layout.overlay_dismiss_target, null)
         dismissParams = WindowManager.LayoutParams(
-            WindowManager.LayoutParams.WRAP_CONTENT,
+            WindowManager.LayoutParams.MATCH_PARENT,
             WindowManager.LayoutParams.WRAP_CONTENT,
             WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,
             WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE or WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
             PixelFormat.TRANSLUCENT
         ).apply {
-            gravity = Gravity.BOTTOM or Gravity.CENTER_HORIZONTAL
-            y = 60
+            gravity = Gravity.BOTTOM
+            y = 0
         }
         dismissView?.visibility = View.GONE
 
@@ -289,7 +289,7 @@ class FloatingWidgetService : Service() {
         val view = dismissView ?: return
         val ivIcon = view.findViewById<ImageView>(R.id.ivDismissIcon) ?: return
 
-        // Accurately compute the physical on-screen center coordinates of the X icon
+        // Accurately compute physical on-screen center coordinates of the X icon
         val loc = IntArray(2)
         ivIcon.getLocationOnScreen(loc)
 
@@ -298,7 +298,7 @@ class FloatingWidgetService : Service() {
 
         // Robust Euclidean distance calculation to the actual visual icon center
         val dist = hypot((rawX - iconCenterX).toDouble(), (rawY - iconCenterY).toDouble())
-        val threshold = (ivIcon.width * 1.5f).coerceAtLeast(200f)
+        val threshold = (ivIcon.width * 1.6f).coerceAtLeast(220f)
 
         if (dist < threshold) {
             if (!isOverDismissTarget) {
@@ -323,7 +323,8 @@ class FloatingWidgetService : Service() {
         if (active) {
             ivIcon.setBackgroundResource(R.drawable.bg_dismiss_target_active)
             ivIcon.setColorFilter(ContextCompat.getColor(this, R.color.white))
-            ivIcon.animate().scaleX(1.25f).scaleY(1.25f).setDuration(120).start()
+            ivIcon.animate().scaleX(1.2f).scaleY(1.2f).setDuration(120).start()
+            bubbleView?.animate()?.scaleX(0.85f)?.scaleY(0.85f)?.setDuration(120)?.start()
             tvLabel.text = "Release to remove"
             tvLabel.setTextColor(ContextCompat.getColor(this, R.color.white))
             tvLabel.setBackgroundResource(R.drawable.bg_chip_selected)
@@ -340,6 +341,7 @@ class FloatingWidgetService : Service() {
         ivIcon.setBackgroundResource(R.drawable.bg_dismiss_target_normal)
         ivIcon.setColorFilter(ContextCompat.getColor(this, R.color.status_error))
         ivIcon.animate().scaleX(1.0f).scaleY(1.0f).setDuration(120).start()
+        bubbleView?.animate()?.scaleX(1.0f)?.scaleY(1.0f)?.setDuration(120)?.start()
         tvLabel.text = "Drag here to remove"
         tvLabel.setTextColor(ContextCompat.getColor(this, R.color.text_secondary))
         tvLabel.setBackgroundResource(R.drawable.bg_chip_unselected)
