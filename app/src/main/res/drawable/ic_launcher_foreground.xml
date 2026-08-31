@@ -4,10 +4,31 @@
     android:height="108dp"
     android:viewportWidth="108"
     android:viewportHeight="108">
+
+    <!-- Screen Frame Viewfinder Brackets -->
     <path
-        android:fillColor="#10A37F"
-        android:pathData="M 54,20 C 54,38.77 38.77,54 20,54 C 38.77,54 54,69.23 54,88 C 54,69.23 69.23,54 88,54 C 69.23,54 54,38.77 54,20 Z" />
+        android:strokeColor="#10A37F"
+        android:strokeWidth="4"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:fillColor="#00000000"
+        android:pathData="M 28,38 L 28,28 L 38,28 M 70,28 L 80,28 L 80,38 M 80,70 L 80,80 L 70,80 M 38,80 L 28,80 L 28,70" />
+
+    <!-- Rounded Screen Area -->
+    <path
+        android:fillColor="#1C2A3A"
+        android:strokeColor="#40FFFFFF"
+        android:strokeWidth="2"
+        android:pathData="M 34,26 C 31.79,26 30,27.79 30,30 L 30,78 C 30,80.21 31.79,82 34,82 L 74,82 C 76.21,82 78,80.21 78,78 L 78,30 C 78,27.79 76.21,26 74,26 Z" />
+
+    <!-- Center ChatGPT / AI Star -->
     <path
         android:fillColor="#FFFFFF"
-        android:pathData="M 54,30 C 54,43.25 43.25,54 30,54 C 43.25,54 54,64.75 54,78 C 54,64.75 64.75,54 78,54 C 64.75,54 54,43.25 54,30 Z" />
+        android:pathData="M 54,38 C 54,46.8 46.8,54 38,54 C 46.8,54 54,61.2 54,70 C 54,61.2 61.2,54 70,54 C 61.2,54 54,46.8 54,38 Z" />
+
+    <!-- Small Secondary AI Star -->
+    <path
+        android:fillColor="#6EE7B7"
+        android:pathData="M 68,40 C 68,42.5 66.5,44 64,44 C 66.5,44 68,45.5 68,48 C 68,45.5 69.5,44 72,44 C 69.5,44 68,42.5 68,40 Z" />
+
 </vector>

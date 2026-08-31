@@ -7,14 +7,14 @@
                 android:angle="135"
                 android:startColor="#10A37F"
                 android:centerColor="#0D8A6C"
-                android:endColor="#095D49"
+                android:endColor="#064E3B"
                 android:type="linear" />
             <stroke
-                android:width="2dp"
-                android:color="#80FFFFFF" />
+                android:width="2.5dp"
+                android:color="#E6FFFFFF" />
             <size
-                android:width="56dp"
-                android:height="56dp" />
+                android:width="58dp"
+                android:height="58dp" />
         </shape>
     </item>
 </ripple>
