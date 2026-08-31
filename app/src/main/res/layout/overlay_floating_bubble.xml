@@ -8,11 +8,11 @@
     android:clickable="true"
     android:focusable="true">
 
-    <!-- 100% Fully Transparent Floating Optical Lens Emblem -->
+    <!-- ChatGPT-style Floating Optical Squircle Emblem (64dp) -->
     <ImageView
         android:id="@+id/ivBubbleIcon"
-        android:layout_width="54dp"
-        android:layout_height="54dp"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
         android:background="@drawable/bg_floating_bubble"
         android:contentDescription="ScreenGPT Bubble"
         android:elevation="0dp"
