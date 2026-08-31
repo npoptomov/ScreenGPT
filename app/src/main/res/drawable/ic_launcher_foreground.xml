@@ -5,37 +5,25 @@
     android:viewportWidth="108"
     android:viewportHeight="108">
 
-    <!-- Screen Frame Viewfinder Brackets -->
+    <!-- Precision Screen Frame Brackets -->
     <path
-        android:strokeColor="#06B6D4"
-        android:strokeWidth="4"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="3.5"
         android:strokeLineCap="round"
         android:strokeLineJoin="round"
         android:fillColor="#00000000"
         android:pathData="M 28,38 L 28,28 L 38,28 M 70,28 L 80,28 L 80,38 M 80,70 L 80,80 L 70,80 M 38,80 L 28,80 L 28,70" />
 
-    <!-- Rounded Screen Area with gradient feel -->
+    <!-- Minimalist Display Screen Frame -->
     <path
-        android:fillColor="#1E1B4B"
-        android:strokeColor="#818CF8"
+        android:fillColor="#18181B"
+        android:strokeColor="#4DFFFFFF"
         android:strokeWidth="2"
         android:pathData="M 34,26 C 31.79,26 30,27.79 30,30 L 30,78 C 30,80.21 31.79,82 34,82 L 74,82 C 76.21,82 78,80.21 78,78 L 78,30 C 78,27.79 76.21,26 74,26 Z" />
 
-    <!-- AI Vision Iris -->
-    <path
-        android:strokeColor="#38BDF8"
-        android:strokeWidth="3.0"
-        android:fillColor="#2606B6D4"
-        android:pathData="M 36,54 C 40,42 68,42 72,54 C 68,66 40,66 36,54 Z" />
-
-    <!-- Center AI Star Core -->
+    <!-- Center Precision AI Star -->
     <path
         android:fillColor="#FFFFFF"
-        android:pathData="M 54,42 C 54,48 48,54 42,54 C 48,54 54,60 54,66 C 54,60 60,54 66,54 C 60,54 54,48 54,42 Z" />
-
-    <!-- Mini Purple Pupil Core -->
-    <path
-        android:fillColor="#A855F7"
-        android:pathData="M 54,52 A 2,2 0 1,0 54,56 A 2,2 0 1,0 54,52 Z" />
+        android:pathData="M 54,36 C 54,45.5 44.5,54 35,54 C 44.5,54 54,62.5 54,72 C 54,62.5 63.5,54 73,54 C 63.5,54 54,45.5 54,36 Z" />
 
 </vector>

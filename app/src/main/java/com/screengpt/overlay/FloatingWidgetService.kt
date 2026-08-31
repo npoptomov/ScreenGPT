@@ -187,7 +187,7 @@ class FloatingWidgetService : Service() {
             PixelFormat.TRANSLUCENT
         ).apply {
             gravity = Gravity.BOTTOM or Gravity.CENTER_HORIZONTAL
-            y = 80
+            y = 60
         }
         dismissView?.visibility = View.GONE
 
@@ -272,13 +272,13 @@ class FloatingWidgetService : Service() {
         dismissView?.let { view ->
             view.visibility = View.VISIBLE
             view.alpha = 0f
-            view.animate().alpha(1f).setDuration(200).start()
+            view.animate().alpha(1f).setDuration(150).start()
         }
     }
 
     private fun hideDismissTarget() {
         dismissView?.let { view ->
-            view.animate().alpha(0f).setDuration(200).withEndAction {
+            view.animate().alpha(0f).setDuration(150).withEndAction {
                 view.visibility = View.GONE
                 resetDismissTargetState()
             }.start()
@@ -286,11 +286,21 @@ class FloatingWidgetService : Service() {
     }
 
     private fun checkDismissHover(rawX: Float, rawY: Float) {
-        val targetX = screenWidth / 2f
-        val targetY = screenHeight - 160f
-        val dist = hypot((rawX - targetX).toDouble(), (rawY - targetY).toDouble())
+        val view = dismissView ?: return
+        val ivIcon = view.findViewById<ImageView>(R.id.ivDismissIcon) ?: return
 
-        if (dist < 180) {
+        // Accurately compute the physical on-screen center coordinates of the X icon
+        val loc = IntArray(2)
+        ivIcon.getLocationOnScreen(loc)
+
+        val iconCenterX = loc[0] + ivIcon.width / 2f
+        val iconCenterY = loc[1] + ivIcon.height / 2f
+
+        // Robust Euclidean distance calculation to the actual visual icon center
+        val dist = hypot((rawX - iconCenterX).toDouble(), (rawY - iconCenterY).toDouble())
+        val threshold = (ivIcon.width * 1.5f).coerceAtLeast(200f)
+
+        if (dist < threshold) {
             if (!isOverDismissTarget) {
                 isOverDismissTarget = true
                 highlightDismissTarget(true)
@@ -300,6 +310,7 @@ class FloatingWidgetService : Service() {
             if (isOverDismissTarget) {
                 isOverDismissTarget = false
                 highlightDismissTarget(false)
+                hasVibratedForDismiss = false
             }
         }
     }
@@ -312,7 +323,7 @@ class FloatingWidgetService : Service() {
         if (active) {
             ivIcon.setBackgroundResource(R.drawable.bg_dismiss_target_active)
             ivIcon.setColorFilter(ContextCompat.getColor(this, R.color.white))
-            ivIcon.animate().scaleX(1.2f).scaleY(1.2f).setDuration(150).start()
+            ivIcon.animate().scaleX(1.25f).scaleY(1.25f).setDuration(120).start()
             tvLabel.text = "Release to remove"
             tvLabel.setTextColor(ContextCompat.getColor(this, R.color.white))
             tvLabel.setBackgroundResource(R.drawable.bg_chip_selected)
@@ -328,7 +339,7 @@ class FloatingWidgetService : Service() {
 
         ivIcon.setBackgroundResource(R.drawable.bg_dismiss_target_normal)
         ivIcon.setColorFilter(ContextCompat.getColor(this, R.color.status_error))
-        ivIcon.animate().scaleX(1.0f).scaleY(1.0f).setDuration(150).start()
+        ivIcon.animate().scaleX(1.0f).scaleY(1.0f).setDuration(120).start()
         tvLabel.text = "Drag here to remove"
         tvLabel.setTextColor(ContextCompat.getColor(this, R.color.text_secondary))
         tvLabel.setBackgroundResource(R.drawable.bg_chip_unselected)
@@ -345,10 +356,10 @@ class FloatingWidgetService : Service() {
                     @Suppress("DEPRECATION")
                     val vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                        vibrator.vibrate(VibrationEffect.createOneShot(40, VibrationEffect.DEFAULT_AMPLITUDE))
+                        vibrator.vibrate(VibrationEffect.createOneShot(45, VibrationEffect.DEFAULT_AMPLITUDE))
                     } else {
                         @Suppress("DEPRECATION")
-                        vibrator.vibrate(40)
+                        vibrator.vibrate(45)
                     }
                 }
             } catch (e: Exception) {
@@ -358,7 +369,7 @@ class FloatingWidgetService : Service() {
     }
 
     private fun dismissWidget() {
-        bubbleView?.animate()?.scaleX(0f)?.scaleY(0f)?.alpha(0f)?.setDuration(200)?.withEndAction {
+        bubbleView?.animate()?.scaleX(0f)?.scaleY(0f)?.alpha(0f)?.setDuration(180)?.withEndAction {
             Toast.makeText(this, "ScreenGPT widget removed", Toast.LENGTH_SHORT).show()
             stopSelf()
         }?.start()

@@ -25,8 +25,8 @@
                 android:layout_width="52dp"
                 android:layout_height="52dp"
                 android:background="@drawable/bg_floating_bubble"
-                android:padding="10dp"
-                android:src="@drawable/ic_screen_ai_eye" />
+                android:padding="11dp"
+                android:src="@drawable/ic_screen_gpt_mono" />
 
             <LinearLayout
                 android:layout_width="0dp"
