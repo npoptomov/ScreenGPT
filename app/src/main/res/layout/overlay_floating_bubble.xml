@@ -8,7 +8,7 @@
     android:clickable="true"
     android:focusable="true">
 
-    <!-- 100% Fully Transparent Floating AI Emblem -->
+    <!-- 100% Fully Transparent Floating Optical Lens Emblem -->
     <ImageView
         android:id="@+id/ivBubbleIcon"
         android:layout_width="54dp"
@@ -18,6 +18,6 @@
         android:elevation="0dp"
         android:padding="2dp"
         android:scaleType="centerInside"
-        android:src="@drawable/ic_chatgpt_floating_glyph" />
+        android:src="@drawable/ic_screen_aperture_lens" />
 
 </FrameLayout>
