@@ -1,0 +1,48 @@
+<resources>
+    <string name="app_name">ScreenGPT</string>
+    <string name="app_subtitle">Floating Screen ChatGPT Assistant</string>
+
+    <!-- Permissions and Setup -->
+    <string name="service_running">ScreenGPT is active</string>
+    <string name="service_running_desc">Tap the floating widget anywhere on your screen to ask ChatGPT</string>
+    <string name="permission_overlay_title">1. Overlay Permission</string>
+    <string name="permission_overlay_desc">Allows the AI bubble and answer card to float over other apps</string>
+    <string name="permission_capture_title">2. Screen Capture</string>
+    <string name="permission_capture_desc">Allows capturing your screen when you tap the floating widget</string>
+    <string name="permission_notification_title">3. Notifications</string>
+    <string name="permission_notification_desc">Required for background foreground service stability</string>
+    <string name="btn_grant">Grant</string>
+    <string name="btn_granted">Granted ✓</string>
+
+    <!-- Settings -->
+    <string name="api_settings_title">OpenAI Configuration</string>
+    <string name="api_key_label">OpenAI API Key</string>
+    <string name="api_key_hint">sk-proj-...</string>
+    <string name="api_key_helper">Stored securely on your device using EncryptedSharedPreferences</string>
+    <string name="model_selection_label">AI Model</string>
+    <string name="model_gpt_4o_mini">GPT-4o Mini (Fast &amp; Ultra Cheap)</string>
+    <string name="model_gpt_4o">GPT-4o (Most Capable Vision)</string>
+    <string name="save_settings">Save Settings</string>
+    <string name="settings_saved">Settings saved successfully!</string>
+    <string name="btn_start_service">Start Floating Widget</string>
+    <string name="btn_stop_service">Stop Floating Widget</string>
+    <string name="api_key_required_error">Please enter a valid OpenAI API Key first.</string>
+
+    <!-- Floating Overlay UI -->
+    <string name="query_dialog_title">Ask ChatGPT About This Screen</string>
+    <string name="prompt_hint">Type what you want to know...</string>
+    <string name="prompt_explain">💡 Explain this</string>
+    <string name="prompt_summarize">📝 Summarize</string>
+    <string name="prompt_solve">🧩 Solve/Calculate</string>
+    <string name="prompt_translate">🌐 Translate</string>
+    <string name="prompt_extract">📋 Extract Text</string>
+    <string name="btn_send">Ask</string>
+    <string name="analyzing_screen">Analyzing screen with ChatGPT...</string>
+    <string name="response_title">ChatGPT Response</string>
+    <string name="btn_copy">Copy</string>
+    <string name="btn_follow_up">Ask Follow-up</string>
+    <string name="btn_close">Close</string>
+    <string name="copied_to_clipboard">Copied to clipboard!</string>
+    <string name="error_no_api_key">No OpenAI API key found. Please open ScreenGPT app to set your API key.</string>
+    <string name="error_capture_failed">Screen capture failed. Please ensure screen capture permission is granted.</string>
+</resources>

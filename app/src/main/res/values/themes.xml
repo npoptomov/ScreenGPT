@@ -1,0 +1,21 @@
+<resources>
+    <!-- Base Application Theme -->
+    <style name="Theme.ScreenChatGPTOverlay" parent="Theme.Material3.Dark.NoActionBar">
+        <item name="colorPrimary">@color/brand_emerald</item>
+        <item name="colorOnPrimary">@color/text_on_brand</item>
+        <item name="colorSecondary">@color/brand_purple</item>
+        <item name="android:windowBackground">@color/bg_dark_base</item>
+        <item name="android:statusBarColor">@color/bg_dark_base</item>
+        <item name="android:navigationBarColor">@color/bg_dark_base</item>
+    </style>
+
+    <!-- Transparent Activity Theme for Permission Dialog Trampoline -->
+    <style name="Theme.ScreenChatGPTOverlay.Transparent" parent="Theme.Material3.Dark.NoActionBar">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Translucent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+</resources>

@@ -1,0 +1,35 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="36dp"
+    android:height="36dp"
+    android:viewportWidth="36"
+    android:viewportHeight="36">
+    
+    <!-- Phone / Screen Viewfinder Outline -->
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="2.0"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:fillColor="#00000000"
+        android:pathData="M 6,10 L 6,6 L 10,6 M 26,6 L 30,6 L 30,10 M 30,26 L 30,30 L 26,30 M 10,30 L 6,30 L 6,26" />
+
+    <!-- Screen Outline Inside -->
+    <path
+        android:strokeColor="#80FFFFFF"
+        android:strokeWidth="1.2"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:fillColor="#1AFFFFFF"
+        android:pathData="M 9,7 C 7.895,7 7,7.895 7,9 L 7,27 C 7,28.105 7.895,29 9,29 L 27,29 C 28.105,29 29,28.105 29,27 L 29,9 C 29,7.895 28.105,7 27,7 Z" />
+
+    <!-- Main Center AI Sparkle (ChatGPT / Vision Star) -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M 18,10 C 18,14.5 14.5,18 10,18 C 14.5,18 18,21.5 18,26 C 18,21.5 21.5,18 26,18 C 21.5,18 18,14.5 18,10 Z" />
+
+    <!-- Mini Accent Sparkle Top-Right -->
+    <path
+        android:fillColor="#6EE7B7"
+        android:pathData="M 25,10 C 25,11.5 24,12.5 22.5,12.5 C 24,12.5 25,13.5 25,15 C 25,13.5 26,12.5 27.5,12.5 C 26,12.5 25,11.5 25,10 Z" />
+
+</vector>
