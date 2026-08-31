@@ -4,19 +4,20 @@
     android:id="@+id/bubbleRoot"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:background="@android:color/transparent"
     android:clickable="true"
     android:focusable="true">
 
-    <!-- Translucent Glassmorphic Professional AI Bubble -->
+    <!-- 100% Fully Transparent Floating AI Emblem -->
     <ImageView
         android:id="@+id/ivBubbleIcon"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
+        android:layout_width="54dp"
+        android:layout_height="54dp"
         android:background="@drawable/bg_floating_bubble"
         android:contentDescription="ScreenGPT Bubble"
-        android:elevation="12dp"
-        android:padding="11dp"
+        android:elevation="0dp"
+        android:padding="2dp"
         android:scaleType="centerInside"
-        android:src="@drawable/ic_chatgpt_professional_ai" />
+        android:src="@drawable/ic_chatgpt_floating_glyph" />
 
 </FrameLayout>
