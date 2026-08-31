@@ -1,20 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ripple xmlns:android="http://schemas.android.com/apk/res/android"
-    android:color="#33000000">
+    android:color="#33FFFFFF">
     <item>
         <shape android:shape="oval">
-            <gradient
-                android:angle="135"
-                android:startColor="#FFFFFF"
-                android:centerColor="#F8FAFC"
-                android:endColor="#E2E8F0"
-                android:type="linear" />
+            <!-- Translucent Dark Glass Background -->
+            <solid android:color="#B3090D16" />
             <stroke
-                android:width="2.5dp"
-                android:color="#0F172A" />
+                android:width="1.8dp"
+                android:color="#80FFFFFF" />
             <size
-                android:width="58dp"
-                android:height="58dp" />
+                android:width="56dp"
+                android:height="56dp" />
         </shape>
     </item>
 </ripple>
