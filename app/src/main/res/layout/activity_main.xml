@@ -33,7 +33,7 @@
             android:text="Floating capture button" android:textColor="@color/text_primary"
             android:textSize="18sp" />
         <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:text="Optional. Tap to capture and share with ChatGPT; drag to move. The button hides during capture. Requires screenshot accessibility access on Android 11 or newer."
+            android:text="Optional. Tap to capture and share with ChatGPT; drag to move or drop on × to hide. Enable this switch to bring it back. The button hides during capture. Requires screenshot accessibility access on Android 11 or newer."
             android:textColor="@color/text_secondary" android:textSize="15sp" />
         <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="24dp"
             android:text="Other capture options" android:textColor="@color/text_primary" android:textSize="20sp" android:textStyle="bold" />

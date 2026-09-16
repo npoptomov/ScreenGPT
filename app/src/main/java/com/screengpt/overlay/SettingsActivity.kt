@@ -9,6 +9,17 @@ import com.screengpt.overlay.databinding.ActivityMainBinding
 
 class SettingsActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+    private val widgetPreferenceListener = android.content.SharedPreferences.OnSharedPreferenceChangeListener { preferences, key ->
+        if (key == CaptureWidget.ENABLED) binding.switchFloatingWidget.isChecked = preferences.getBoolean(key, false)
+    }
+    override fun onStart() {
+        super.onStart()
+        CaptureWidget.preferences(this).registerOnSharedPreferenceChangeListener(widgetPreferenceListener)
+    }
+    override fun onStop() {
+        CaptureWidget.preferences(this).unregisterOnSharedPreferenceChangeListener(widgetPreferenceListener)
+        super.onStop()
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -40,6 +51,7 @@ class SettingsActivity : AppCompatActivity() {
     }
     override fun onResume() { super.onResume(); updateState() }
     private fun updateState() {
+        binding.switchFloatingWidget.isChecked = CaptureWidget.preferences(this).getBoolean(CaptureWidget.ENABLED, false)
         val enabled = ScreenCaptureAccessibilityService.isEnabled(this)
         if (enabled) FloatingWidgetService.stop(this)
         binding.tvServiceStatus.text = when {
