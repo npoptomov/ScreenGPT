@@ -2,6 +2,12 @@
   <img src="docs/banner.svg" alt="ScreenGPT — Capture your screen. Ask ChatGPT." width="960">
 </p>
 
+## 📥 Download
+
+**[Download ScreenGPT.apk](https://github.com/npoptomov/ScreenGPT/releases/latest/download/ScreenGPT.apk)** — open this link on your Android phone, then tap the downloaded file to install.
+
+[Release notes and checksums](https://github.com/npoptomov/ScreenGPT/releases/latest) · [Setup instructions](#install-and-enable-screenshot-access)
+
 <p align="center">
   <a href="https://github.com/npoptomov/ScreenGPT/releases/latest/download/ScreenGPT.apk"><img alt="Download APK" src="https://img.shields.io/badge/Download-APK-59F2C4?style=for-the-badge&amp;labelColor=10182D"></a>
   <a href="https://github.com/npoptomov/ScreenGPT/releases"><img alt="GitHub Releases" src="https://img.shields.io/badge/GitHub-Releases-7395FF?style=for-the-badge&amp;labelColor=10182D"></a>
