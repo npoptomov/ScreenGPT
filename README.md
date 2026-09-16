@@ -19,7 +19,7 @@ See something you want to ask about? Use a button or gesture to send a screensho
 
 [Get started](#install-and-enable-screenshot-access) · [Find your phone](#phone-shortcuts) · [Need help?](#help)
 
-## 🟢 Get started
+## Get started
 
 <a id="install-and-enable-screenshot-access"></a>
 
@@ -111,7 +111,7 @@ You can also check **Settings → Additional settings → Quick ball → Select 
 
 **Another Android phone?** First check whether its settings let a button or gesture open any app, and assign ScreenGPT. If not, use one of the alternatives below. The digital-assistant option in ScreenGPT Settings is experimental and depends on the phone.
 
-## 🟣 Alternatives: tile or floating button
+## Alternatives: tile or floating button
 
 If your phone doesn’t offer a suitable button or gesture, use either of these.
 
