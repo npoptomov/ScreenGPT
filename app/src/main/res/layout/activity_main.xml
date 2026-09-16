@@ -14,7 +14,7 @@
         <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
             android:layout_marginTop="24dp" android:text="One-time screenshot access" android:textColor="@color/text_primary" android:textSize="20sp" android:textStyle="bold" />
         <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:layout_marginTop="8dp" android:text="Enable ‘ScreenGPT screen capture’ in Accessibility. It captures only when you trigger ScreenGPT, saves the image, copies it to the clipboard, and shares it with ChatGPT. No floating window or continuous screen recording. Protected screens cannot be captured. Requires Android 11 or newer."
+            android:layout_marginTop="8dp" android:text="Enable ‘ScreenGPT screen capture’ in Accessibility. It captures only when you trigger ScreenGPT, saves the image, copies it to the clipboard, and shares it with ChatGPT. No continuous screen recording. Protected screens cannot be captured. Requires Android 11 or newer."
             android:textColor="@color/text_secondary" android:textSize="15sp" />
         <com.google.android.material.button.MaterialButton android:id="@+id/btnEnableCapture"
             android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:text="Enable screenshot access" />
@@ -26,6 +26,15 @@
             android:textColor="@color/text_secondary" android:textSize="15sp" />
         <com.google.android.material.button.MaterialButton android:id="@+id/btnBatterySettings"
             android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Open battery settings" />
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/switchFloatingWidget"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="24dp" android:minHeight="48dp"
+            android:text="Floating capture button" android:textColor="@color/text_primary"
+            android:textSize="18sp" />
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="Optional. Tap to capture and share with ChatGPT; drag to move. The button hides during capture. Requires screenshot accessibility access on Android 11 or newer."
+            android:textColor="@color/text_secondary" android:textSize="15sp" />
         <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="24dp"
             android:text="Other capture options" android:textColor="@color/text_primary" android:textSize="20sp" android:textStyle="bold" />
         <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp"

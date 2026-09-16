@@ -13,6 +13,14 @@ class SettingsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.switchFloatingWidget.isChecked = CaptureWidget.preferences(this).getBoolean(CaptureWidget.ENABLED, false)
+        binding.switchFloatingWidget.isEnabled = Build.VERSION.SDK_INT >= 30
+        binding.switchFloatingWidget.setOnCheckedChangeListener { _, checked ->
+            CaptureWidget.preferences(this).edit().putBoolean(CaptureWidget.ENABLED, checked).apply()
+            if (checked && !ScreenCaptureAccessibilityService.isEnabled(this)) {
+                startActivity(Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS))
+            }
+        }
         binding.btnEnableCapture.setOnClickListener { startActivity(Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS)) }
         binding.btnBatterySettings.setOnClickListener {
             try { startActivity(Intent(Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS)) }

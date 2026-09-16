@@ -59,6 +59,7 @@ open class CapturePermissionActivity : AppCompatActivity() {
                         while (ScreenCaptureAccessibilityService.instance == null) delay(50)
                         ScreenCaptureAccessibilityService.instance!!
                     }
+                    service.setWidgetCapturing(true)
                     FloatingWidgetService.stop(this@CapturePermissionActivity)
                     delay(350)
                     val bitmap = withTimeout(5000) { service.capture() }
@@ -95,7 +96,10 @@ open class CapturePermissionActivity : AppCompatActivity() {
     }
 
     override fun onDestroy() {
-        if (ownsCapture) requestGate.release()
+        if (ownsCapture) {
+            ScreenCaptureAccessibilityService.instance?.setWidgetCapturing(false)
+            requestGate.release()
+        }
         super.onDestroy()
     }
 

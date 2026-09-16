@@ -17,10 +17,18 @@ import kotlin.coroutines.resumeWithException
 
 /** Screenshot access only: no UI-tree reading, gestures, key filtering or event monitoring. */
 class ScreenCaptureAccessibilityService : AccessibilityService() {
-    override fun onServiceConnected() { instance = this }
+    private var widget: CaptureWidget? = null
+    override fun onServiceConnected() {
+        instance = this
+        widget?.close()
+        widget = CaptureWidget(this).also { it.connect() }
+    }
+    fun setWidgetCapturing(capturing: Boolean) { widget?.setCapturing(capturing) }
     override fun onAccessibilityEvent(event: AccessibilityEvent?) = Unit
     override fun onInterrupt() = Unit
     override fun onDestroy() {
+        widget?.close()
+        widget = null
         if (instance === this) instance = null
         super.onDestroy()
     }
