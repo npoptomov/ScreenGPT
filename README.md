@@ -20,7 +20,7 @@ See something you want to ask about? Use a button or gesture to send a screensho
 1. Install the official [ChatGPT app](https://play.google.com/store/apps/details?id=com.openai.chatgpt) and sign in.
 2. [Download ScreenGPT.apk](https://github.com/npoptomov/ScreenGPT/releases/latest/download/ScreenGPT.apk), open it, and install. Allow your browser or file manager to install apps if Android asks.
 3. Open ScreenGPT → **Enable screenshot access** → turn on **ScreenGPT screen capture** in Accessibility.
-4. Pick a shortcut below, open the screen you want to share, and try it while your phone is unlocked.
+4. Set up a **physical button or back-tap shortcut** using the [guide for your phone](#phone-shortcuts). Open the screen you want to share and trigger it while your phone is unlocked.
 
 > **To open Settings later:** long-press the ScreenGPT app icon → **Settings**. A normal tap starts capture once setup is done.
 
@@ -31,18 +31,11 @@ Open **Settings → Apps → ScreenGPT → ⋮ → Allow restricted settings**, 
 
 </details>
 
-## 🟣 Two easy shortcuts
-
-| Quick Settings tile | Floating button |
-| --- | --- |
-| Expand Quick Settings → **Edit** → add **ScreenGPT**. Tap it over any app to capture. [Tile setup help](https://support.google.com/android/answer/9083864?hl=en). | In ScreenGPT Settings, turn on **Floating capture button**. It appears on the right. Tap to capture, drag to move. |
-| Good if you want to keep the screen clear. | Drag onto **×** to hide it. Turn it back on in Settings. It hides itself during screenshots. |
-
 <a id="phone-shortcuts"></a>
 
-## 📱 Shortcuts by phone
+## 📱 Start here: physical buttons and gestures
 
-Choose your phone below. **Select ScreenGPT as the app to open**—launching it starts capture. These are documented system options, not a claim that every model has been tested. Menus vary by software version.
+Start with your phone’s button or back-tap shortcut, where supported. **Select ScreenGPT as the app to open** to start capture immediately. Choose your phone below. These are documented system options, not a claim that every model has been tested. Menus vary by software version.
 
 <details>
 <summary><b>Samsung Galaxy — double-press the Side button</b></summary>
@@ -87,9 +80,9 @@ Double-tap the back while viewing the screen you want to share. If Quick Launch 
 </details>
 
 <details>
-<summary><b>OnePlus, OPPO &amp; realme — tile first; Smart Sidebar is another option</b></summary>
+<summary><b>OnePlus, OPPO &amp; realme — other shortcut options</b></summary>
 
-The ScreenGPT tile or floating button is the easiest place to start.
+If your model has no suitable button or back-tap app shortcut, try the alternatives below.
 
 On phones with **Smart Sidebar**, search Settings for that name, enable it, open the sidebar, and use **Edit** or **+** to add ScreenGPT if it appears. This is worth trying, but some versions launch apps in a floating window, so the capture may include extra system UI. Use the tile if that happens.
 
@@ -100,9 +93,9 @@ Manufacturer references: [OnePlus manual](https://service.oneplus.com/content/da
 </details>
 
 <details>
-<summary><b>Xiaomi, Redmi &amp; POCO — tile or floating button</b></summary>
+<summary><b>Xiaomi, Redmi &amp; POCO — other shortcut options</b></summary>
 
-Use ScreenGPT's tile or floating button for the simplest setup. Don't assume a built-in screenshot gesture also sends the image to ChatGPT.
+If your model offers a button or gesture that opens a chosen app, assign ScreenGPT. A built-in screenshot action alone won't send the image to ChatGPT.
 
 You can also check **Settings → Additional settings → Quick ball → Select shortcuts** on models that have it. If your version offers an app picker, choose ScreenGPT. Xiaomi documents Quick ball customization, but doesn't promise arbitrary app selection on every model.
 
@@ -110,7 +103,16 @@ You can also check **Settings → Additional settings → Quick ball → Select 
 
 </details>
 
-**Another Android phone?** Start with the tile or floating button. If its settings let a gesture open any app, try assigning ScreenGPT. The digital-assistant option in ScreenGPT Settings is experimental and depends on the phone.
+**Another Android phone?** First check whether its settings let a button or gesture open any app, and assign ScreenGPT. If not, use one of the alternatives below. The digital-assistant option in ScreenGPT Settings is experimental and depends on the phone.
+
+## 🟣 Alternatives: tile or floating button
+
+If your phone doesn’t offer a suitable button or gesture, use either of these.
+
+| Quick Settings tile | Floating button |
+| --- | --- |
+| Expand Quick Settings → **Edit** → add **ScreenGPT**. Tap it over any app to capture. [Tile setup help](https://support.google.com/android/answer/9083864?hl=en). | In ScreenGPT Settings, turn on **Floating capture button**. It appears on the right. Tap to capture, drag to move. |
+| Good if you want to keep the screen clear. | Drag onto **×** to hide it. Turn it back on in Settings. It hides itself during screenshots. |
 
 <a id="help"></a>
 
