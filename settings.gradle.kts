@@ -19,5 +19,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "ScreenChatGPTOverlay"
+rootProject.name = "ScreenGPT"
 include(":app")

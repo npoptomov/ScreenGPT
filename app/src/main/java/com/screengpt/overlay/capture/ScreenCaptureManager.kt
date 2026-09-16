@@ -19,7 +19,7 @@ import kotlinx.coroutines.withContext
 import kotlinx.coroutines.withTimeoutOrNull
 import java.io.ByteArrayOutputStream
 
-class ScreenCaptureManager(private val context: Context) {
+class ScreenCaptureManager(private val context: Context, private val onProjectionStopped: () -> Unit = {}) {
 
     private var mediaProjection: MediaProjection? = null
     private var virtualDisplay: VirtualDisplay? = null
@@ -38,6 +38,7 @@ class ScreenCaptureManager(private val context: Context) {
             super.onStop()
             teardownDisplay()
             mediaProjection = null
+            onProjectionStopped()
         }
     }
 
@@ -47,6 +48,7 @@ class ScreenCaptureManager(private val context: Context) {
         } catch (e: Exception) {
             // Ignore
         }
+        this.mediaProjection?.stop()
         this.mediaProjection = projection
         try {
             projection.registerCallback(projectionCallback, mainHandler)
@@ -57,7 +59,7 @@ class ScreenCaptureManager(private val context: Context) {
         setupPersistentDisplay()
     }
 
-    fun hasProjection(): Boolean = mediaProjection != null
+    fun hasProjection(): Boolean = mediaProjection != null && virtualDisplay != null && imageReader != null
 
     private fun updateScreenMetrics() {
         try {
@@ -118,14 +120,14 @@ class ScreenCaptureManager(private val context: Context) {
         }
     }
 
-    suspend fun captureScreen(): Result<CapturedScreenData> = withContext(Dispatchers.Default) {
+    suspend fun captureScreen(): Result<CapturedScreenData> = withContext(Dispatchers.Main.immediate) {
         val projection = mediaProjection ?: return@withContext Result.failure(
             IllegalStateException("Screen capture session expired. Please grant permission.")
         )
 
         // Ensure display is alive
         if (virtualDisplay == null || imageReader == null) {
-            setupPersistentDisplay()
+            return@withContext Result.failure(IllegalStateException("Screen capture session expired. Please grant permission."))
         }
 
         try {
@@ -148,18 +150,20 @@ class ScreenCaptureManager(private val context: Context) {
                 return@withContext Result.failure(IllegalStateException("Failed to render screen frame."))
             }
 
-            // Downscale for fast transmission
-            val optimizedBitmap = scaleBitmapDown(bitmap, 1280)
-            val thumbnailBitmap = scaleBitmapDown(bitmap, 240)
-            val base64String = encodeBitmapToBase64(optimizedBitmap)
+            withContext(Dispatchers.Default) {
+                // Downscale for fast transmission
+                val optimizedBitmap = scaleBitmapDown(bitmap, 1280)
+                val thumbnailBitmap = scaleBitmapDown(bitmap, 240)
+                val base64String = encodeBitmapToBase64(optimizedBitmap)
 
-            Result.success(
-                CapturedScreenData(
-                    fullBitmap = optimizedBitmap,
-                    thumbnailBitmap = thumbnailBitmap,
-                    base64Jpeg = base64String
+                Result.success(
+                    CapturedScreenData(
+                        fullBitmap = optimizedBitmap,
+                        thumbnailBitmap = thumbnailBitmap,
+                        base64Jpeg = base64String
+                    )
                 )
-            )
+            }
         } catch (e: Exception) {
             Result.failure(e)
         }
@@ -169,6 +173,7 @@ class ScreenCaptureManager(private val context: Context) {
         return try {
             val plane = image.planes[0]
             val buffer = plane.buffer
+            buffer.rewind()
             val pixelStride = plane.pixelStride
             val rowStride = plane.rowStride
             val rowPadding = rowStride - pixelStride * targetWidth

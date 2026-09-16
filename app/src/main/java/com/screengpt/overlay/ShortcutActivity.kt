@@ -1,16 +1,10 @@
 package com.screengpt.overlay
 
-import android.app.Activity
 import android.os.Bundle
 
-/**
- * 1-Tap Home Screen Shortcut Activity to capture and bridge to ChatGPT instantly.
- */
-class ShortcutActivity : Activity() {
-
+class ShortcutActivity : CapturePermissionActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        intent.putExtra(EXTRA_CAPTURE_AFTER_GRANT, true)
         super.onCreate(savedInstanceState)
-        FloatingWidgetService.triggerCapture(applicationContext)
-        finish()
     }
 }

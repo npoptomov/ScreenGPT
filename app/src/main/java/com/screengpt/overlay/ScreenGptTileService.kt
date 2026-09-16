@@ -18,25 +18,21 @@ class ScreenGptTileService : TileService() {
         tile.updateTile()
     }
 
+    @android.annotation.SuppressLint("StartActivityAndCollapseDeprecated") // Legacy overload only runs below API 34.
     override fun onClick() {
         super.onClick()
 
-        // Collapse notification shade and trigger screen capture bridge
-        val collapseAndTrigger = {
-            FloatingWidgetService.triggerCapture(applicationContext)
-        }
-
-        try {
-            if (isLocked) {
-                unlockAndRun { collapseAndTrigger() }
+        val capture = Runnable {
+            val intent = Intent(this, ShortcutActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            if (Build.VERSION.SDK_INT >= 34) {
+                startActivityAndCollapse(android.app.PendingIntent.getActivity(
+                    this, 0, intent, android.app.PendingIntent.FLAG_UPDATE_CURRENT or android.app.PendingIntent.FLAG_IMMUTABLE
+                ))
             } else {
-                collapseAndTrigger()
-                // Close status bar shade
-                val closeIntent = Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS)
-                sendBroadcast(closeIntent)
+                @Suppress("DEPRECATION")
+                startActivityAndCollapse(intent)
             }
-        } catch (e: Exception) {
-            collapseAndTrigger()
         }
+        if (isLocked) unlockAndRun(capture) else capture.run()
     }
 }

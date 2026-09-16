@@ -49,4 +49,13 @@
 
     <string name="shortcut_short_label">Ask Screen</string>
     <string name="shortcut_long_label">Ask ChatGPT About Screen</string>
+    <string name="volume_shortcut_label">ScreenGPT volume shortcut</string>
+    <string name="volume_shortcut_description">Hold Volume Up and Volume Down together for about one second to capture your screen with ScreenGPT. Release both after capture. Requires an unlocked screen. Android asks for screen-sharing consent if needed. This service listens to volume buttons; it does not read screen content. Normal volume controls remain active.</string>
+    <string name="volume_shortcut_help">Hold both volume buttons for about one second, then release. Android asks for screen-sharing consent if needed. Use the assistant gesture or Quick Settings tile to avoid changing volume. Enable ScreenGPT volume shortcut in Accessibility settings. Volume may change slightly; a longer hold may trigger Android’s own accessibility shortcut.</string>
+    <string name="volume_shortcut_setup_needed">Start ScreenGPT and grant overlay and screen capture permissions, then try the volume shortcut again.</string>
+    <string name="volume_shortcut_enable">Enable volume shortcut</string>
+    <string name="volume_shortcut_enabled">Volume shortcut enabled · Settings</string>
+    <string name="shortcut_settings">Settings</string>
+    <string name="accessibility_capture_label">ScreenGPT screen capture</string>
+    <string name="accessibility_capture_description">Captures a screenshot only when you launch ScreenGPT or use its shortcut, then saves it, copies it to the clipboard, and shares it with ChatGPT. Does not read the accessibility UI tree, monitor typing, or control other apps. Enable this to avoid repeated screen-sharing prompts. Protected screens remain unavailable.</string>
 </resources>
