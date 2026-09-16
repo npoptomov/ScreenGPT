@@ -11,7 +11,7 @@ See something you want to ask about? Use a button or gesture to send a screensho
 
 **Android 11+ recommended · No API key · No root**
 
-[Get started](#install-and-enable-screenshot-access) · [Find your phone](#-shortcuts-by-phone) · [Need help?](#-need-help)
+[Get started](#install-and-enable-screenshot-access) · [Find your phone](#phone-shortcuts) · [Need help?](#help)
 
 ## 🟢 Get started
 
@@ -37,6 +37,8 @@ Open **Settings → Apps → ScreenGPT → ⋮ → Allow restricted settings**, 
 | --- | --- |
 | Expand Quick Settings → **Edit** → add **ScreenGPT**. Tap it over any app to capture. [Tile setup help](https://support.google.com/android/answer/9083864?hl=en). | In ScreenGPT Settings, turn on **Floating capture button**. It appears on the right. Tap to capture, drag to move. |
 | Good if you want to keep the screen clear. | Drag onto **×** to hide it. Turn it back on in Settings. It hides itself during screenshots. |
+
+<a id="phone-shortcuts"></a>
 
 ## 📱 Shortcuts by phone
 
@@ -109,6 +111,8 @@ You can also check **Settings → Additional settings → Quick ball → Select 
 </details>
 
 **Another Android phone?** Start with the tile or floating button. If its settings let a gesture open any app, try assigning ScreenGPT. The digital-assistant option in ScreenGPT Settings is experimental and depends on the phone.
+
+<a id="help"></a>
 
 ## 🛠 Need help?
 
