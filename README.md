@@ -23,19 +23,43 @@ See something you want to ask about? Use a button or gesture to send a screensho
 
 <a id="install-and-enable-screenshot-access"></a>
 
-1. Install the official [ChatGPT app](https://play.google.com/store/apps/details?id=com.openai.chatgpt) and sign in.
-2. [Download ScreenGPT.apk](https://github.com/npoptomov/ScreenGPT/releases/latest/download/ScreenGPT.apk), open it, and install. Allow your browser or file manager to install apps if Android asks.
-3. Open ScreenGPT → **Enable screenshot access** → turn on **ScreenGPT screen capture** in Accessibility.
-4. Set up a **physical button or back-tap shortcut** using the [guide for your phone](#phone-shortcuts). Open the screen you want to share and trigger it while your phone is unlocked.
+### 1. Install the apps
 
-> **To open Settings later:** long-press the ScreenGPT app icon → **Settings**. A normal tap starts capture once setup is done.
+Install the official [ChatGPT app](https://play.google.com/store/apps/details?id=com.openai.chatgpt) and sign in. Then [download ScreenGPT.apk](https://github.com/npoptomov/ScreenGPT/releases/latest/download/ScreenGPT.apk), open it, and install. Allow your browser or file manager to install apps if Android asks.
 
-<details>
-<summary>Android says “Restricted setting”?</summary>
+### 2. Enable screenshot access
 
-Open **Settings → Apps → ScreenGPT → ⋮ → Allow restricted settings**, if available. Then go back and enable screenshot access. Only allow this for apps you trust. [Google's instructions](https://support.google.com/android/answer/12623953?hl=en).
+Open **ScreenGPT → Enable screenshot access**. In Android Accessibility settings, find **ScreenGPT screen capture** and turn it on.
 
-</details>
+If Android says **Restricted setting**, open **Settings → Apps → ScreenGPT → ⋮ → Allow restricted settings**, if available. Then return to Accessibility and enable the service. Only allow this for apps you trust. [Google's instructions](https://support.google.com/android/answer/12623953?hl=en).
+
+### 3. Allow ScreenGPT to run in the background — required on Honor
+
+**Don't skip this on Honor.** Automatic App launch management can stop ScreenGPT when you swipe it away or use Clear all, leaving you having to enable screenshot access again.
+
+1. Open your phone's **Settings** and search for **App launch**. Depending on your MagicOS version, it may be under **Apps** or **Battery**.
+2. Find **ScreenGPT**.
+3. Turn off **Manage automatically** to switch to **Manage manually**.
+4. Enable all three options: **Auto-launch**, **Secondary launch**, and **Run in background**.
+5. Confirm with **OK** or **Done** if shown.
+
+[Honor's background-app instructions](https://www.honor.com/mea/support/content/en-us00406923/).
+
+On other phones, check ScreenGPT's battery settings and allow background activity if it is restricted. The names vary by brand. These settings help with background cleanup; they don't override Android's **Force stop** action.
+
+### 4. Set up your button or gesture
+
+Use the [guide for your phone](#phone-shortcuts) below. Choose **ScreenGPT** as the app your physical button or back-tap gesture opens. On supported Honor phones, assign it to **double-press power**.
+
+If your phone doesn't offer a suitable shortcut, use the Quick Settings tile or optional floating button described below.
+
+### 5. Try a capture
+
+Open another app with your phone unlocked, then use your shortcut. ScreenGPT should capture the screen and open ChatGPT with the image. Add your question and send it when you're ready.
+
+On Honor, also try clearing recent apps and using the shortcut again. If capture stops working, check that all three App launch switches from step 3 are still enabled. If the accessibility switch was already turned off, enable it again once after changing the background settings.
+
+> **To open ScreenGPT Settings later:** long-press its app icon → **Settings**. A normal tap starts capture once setup is done.
 
 <a id="phone-shortcuts"></a>
 
@@ -127,7 +151,9 @@ If your phone doesn’t offer a suitable button or gesture, use either of these.
 <details>
 <summary><b>Capture stopped working, or the button disappeared</b></summary>
 
-Check that **ScreenGPT screen capture** is still enabled in Accessibility. Turn it off and on if the service isn't responding. If your phone closes it in the background, allow ScreenGPT background activity in Battery / App launch settings.
+Check that **ScreenGPT screen capture** is still enabled in Accessibility. If it stopped after clearing recent apps, follow **step 3** above—on Honor, all three manual App launch switches need to be enabled.
+
+If it still stops, try locking ScreenGPT Settings in the recent-apps screen if your phone offers that option. If Android has switched screenshot access off, enable it again in Accessibility; ScreenGPT cannot grant itself that permission.
 
 Dragged the button onto ×? Turn **Floating capture button** back on in ScreenGPT Settings.
 
