@@ -33,19 +33,173 @@ Open **ScreenGPT → Enable screenshot access**. In Android Accessibility settin
 
 If Android says **Restricted setting**, open **Settings → Apps → ScreenGPT → ⋮ → Allow restricted settings**, if available. Then return to Accessibility and enable the service. Only allow this for apps you trust. [Google's instructions](https://support.google.com/android/answer/12623953?hl=en).
 
-### 3. Allow ScreenGPT to run in the background — required on Honor
+<a id="background-setup"></a>
 
-**Don't skip this on Honor.** Automatic App launch management can stop ScreenGPT when you swipe it away or use Clear all, leaving you having to enable screenshot access again.
+### 3. Check background access — required setup step
 
-1. Open your phone's **Settings** and search for **App launch**. Depending on your MagicOS version, it may be under **Apps** or **Battery**.
-2. Find **ScreenGPT**.
-3. Turn off **Manage automatically** to switch to **Manage manually**.
-4. Enable all three options: **Auto-launch**, **Secondary launch**, and **Run in background**.
-5. Confirm with **OK** or **Done** if shown.
+**Check this before setting up your shortcut.** Some phones stop background apps when you clear recent apps or leave them unused. On Honor, switching App launch to manual fixed this in our setup.
 
-[Honor's background-app instructions](https://www.honor.com/mea/support/content/en-us00406923/).
+Choose your brand below. These are phone settings adapted from the linked support guides, not a list of models tested with ScreenGPT. Menus depend on the Android version, region, and model; use Settings search if a path doesn't match. You don't need to disable battery saving for the whole phone, and not every phone needs an exception.
 
-On other phones, check ScreenGPT's battery settings and allow background activity if it is restricted. The names vary by brand. These settings help with background cleanup; they don't override Android's **Force stop** action.
+<details>
+<summary><b>Honor — MagicOS / Magic UI</b></summary>
+
+1. Open phone **Settings** and search for **App launch**.
+2. Select **ScreenGPT** and turn off **Manage automatically**.
+3. Under **Manage manually**, enable **Auto-launch**, **Secondary launch**, and **Run in background**. Confirm if asked.
+
+**Don't skip this on Honor.** If Clear all still stops capture, open ScreenGPT Settings, open recent apps, and use the app's lock option if available.
+
+[Honor's instructions](https://www.honor.com/mea/support/content/en-us00406923/)
+
+</details>
+
+<details>
+<summary><b>Samsung Galaxy — One UI</b></summary>
+
+1. Open **Settings → Battery → Background usage limits**. On older versions, start with **Battery and device care → Battery**.
+2. Check **Sleeping apps** and **Deep sleeping apps**. Remove **ScreenGPT** if listed.
+3. Open **Never sleeping apps**, tap **+**, and add **ScreenGPT** if available.
+
+Samsung's deep-sleep list prevents apps from running in the background. Adding an exception can increase battery use; leave the settings for other apps alone.
+
+[Samsung's instructions](https://www.samsung.com/us/support/galaxy-battery/optimization/)
+
+</details>
+
+<details>
+<summary><b>Google Pixel — Pixel Android</b></summary>
+
+1. Open **Settings → Apps → App battery usage** and select **ScreenGPT**. You can also reach it through **Battery → Battery usage → View by apps** if listed.
+2. Open **Allow background usage** and make sure background use is allowed.
+3. Keep **Optimized** initially, then test the shortcut after leaving the app and clearing recent apps.
+
+Google recommends Optimized for apps generally. A blanket battery exemption isn't a required Pixel setup step. If capture still stops, check Accessibility using the troubleshooting section below.
+
+[Google's battery settings guide](https://support.google.com/pixelphone/answer/6090599?hl=en)
+
+</details>
+
+<details>
+<summary><b>Motorola — steps vary by model</b></summary>
+
+On models with **Manage background apps** (documented for moto g77):
+
+1. Open **Settings → Battery → Manage background apps**.
+2. Open **Background use → Smart use**.
+3. Select **ScreenGPT → Always allow**.
+
+Motorola says this menu is available only on models with more than 4 GB of RAM. Other versions have **Battery → Auto launch management**: allow ScreenGPT under **App auto launch** and **App secondary launch**, if those controls are present. Don't assume every Moto has both menus.
+
+[Motorola's background-use guide](https://help.motorola.com/hc/3777/16/global/en-us/CGd0e521.html) · [Alternative launch controls](https://help.motorola.com/hc/1814/14/global/en-us/CG2007980805.html)
+
+</details>
+
+<details>
+<summary><b>Xiaomi — HyperOS / MIUI</b></summary>
+
+1. Search phone Settings for **Background autostart** or **Autostart** and enable it for **ScreenGPT**, if available.
+2. If capture stops in the background, open **Settings → Battery**, select **ScreenGPT**, and choose **No restrictions**, if offered.
+3. Test again after clearing recent apps.
+
+Xiaomi documents the battery path for **Xiaomi 15**. Other HyperOS and MIUI versions may place the app's battery controls elsewhere; search Settings rather than changing unrelated options.
+
+[Xiaomi 15 battery guide](https://www.mi.com/my/support/faq/details/KA-538010/) · [Xiaomi's autostart controls](https://trust.mi.com/docs/miui-privacy-white-paper-global/3/1)
+
+</details>
+
+<details>
+<summary><b>Redmi — HyperOS / MIUI</b></summary>
+
+1. Open **Settings → Apps → Permissions → Background autostart**.
+2. Enable **ScreenGPT**.
+3. If capture still stops, find ScreenGPT's battery settings and select **No restrictions**, if offered.
+
+The autostart path is documented for **Redmi 13C**. On other Redmi models, search Settings for **Autostart** if the menu differs. The battery option follows Xiaomi's guidance where the same control is available.
+
+[Redmi 13C autostart guide](https://www.mi.com/my/support/faq/details/KA-497677/) · [Xiaomi battery guide](https://www.mi.com/my/support/faq/details/KA-538010/)
+
+</details>
+
+<details>
+<summary><b>POCO — HyperOS / MIUI</b></summary>
+
+1. Search Settings for **Background autostart** or **Autostart**. Enable **ScreenGPT** if listed.
+2. Open ScreenGPT's battery settings. If capture stops in the background and **No restrictions** is available, select it.
+3. Test after clearing recent apps.
+
+These steps use the shared Xiaomi software controls; they haven't been verified on a specific POCO model. Follow them only where your phone shows the matching options.
+
+[Xiaomi's autostart controls](https://trust.mi.com/docs/miui-privacy-white-paper-global/3/1) · [Xiaomi battery guide](https://www.mi.com/my/support/faq/details/KA-538010/)
+
+</details>
+
+<details>
+<summary><b>OnePlus — OxygenOS</b></summary>
+
+1. Search phone Settings for **App battery management**.
+2. Select **ScreenGPT** and enable **Allow background activity**.
+3. Enable **Allow auto launch** too, if shown.
+
+The linked guide demonstrates these phone controls with Huawei Health; use ScreenGPT instead. Older OxygenOS versions may use different names.
+
+[Huawei's OnePlus setup guide](https://consumer.huawei.com/ca/support/content/en-us15848666/)
+
+</details>
+
+<details>
+<summary><b>OPPO — ColorOS</b></summary>
+
+1. Search phone Settings for **App battery management**.
+2. Select **ScreenGPT** and enable **Allow background activity**.
+3. Enable **Allow auto launch** if your version offers it.
+
+The linked guide demonstrates these controls with Huawei Health; select ScreenGPT instead. Menu names vary across ColorOS releases.
+
+[Huawei's OPPO setup guide](https://consumer.huawei.com/nz/support/content/en-us15848664/)
+
+</details>
+
+<details>
+<summary><b>realme — realme UI</b></summary>
+
+1. Open **Settings → Battery → App battery management → ScreenGPT**.
+2. Allow **Foreground activity**, **Background activity**, and **Auto launch**, where shown.
+3. If Clear all still stops capture, open ScreenGPT Settings and lock its card in recent apps using the card's menu or lock gesture, if available.
+
+Some versions also put autostart under **Phone Manager → Privacy permissions → Auto-launch apps**.
+
+[realme's support FAQ](https://www.realme.com/global/support/faq)
+
+</details>
+
+<details>
+<summary><b>vivo — Funtouch OS</b></summary>
+
+1. Open phone **Settings → Battery**.
+2. Find **Background power consumption management** and select **ScreenGPT**.
+3. Choose the option that allows the app to continue running in the background.
+
+Use these steps only on versions with this menu. The linked manual doesn't establish the same path for every vivo or iQOO model, or for OriginOS.
+
+[vivo's battery settings manual](https://eu-exstatic-vivofs.vivo.com/8Xa6evfY85lu15Pb/1658104689682/c8570d4b762027b070c0f05851682905.pdf)
+
+</details>
+
+<details>
+<summary><b>Huawei — Android-compatible models with App launch</b></summary>
+
+1. Search phone Settings for **App launch**.
+2. Find **ScreenGPT** and disable **Manage automatically**.
+3. Enable **Run in background**. If manual management also shows **Auto-launch** and **Secondary launch**, enable them.
+
+This applies where your phone can install and run both Android apps from step 1. It is not a compatibility claim for every Huawei phone or HarmonyOS version.
+
+[Huawei's background-app guide](https://consumer.huawei.com/uk/support/content/en-gb00428704/)
+
+</details>
+
+**Another phone, or different menus?** Open ScreenGPT's app info and look for battery/background-use controls. Allow background use if restricted, then run the test in step 5. These settings help reduce automatic cleanup; they cannot guarantee the app stays alive, override **Force stop**, or make temporary screen-sharing consent permanent.
 
 ### 4. Set up your button or gesture
 
@@ -57,7 +211,7 @@ If your phone doesn't offer a suitable shortcut, use the Quick Settings tile or 
 
 Open another app with your phone unlocked, then use your shortcut. ScreenGPT should capture the screen and open ChatGPT with the image. Add your question and send it when you're ready.
 
-On Honor, also try clearing recent apps and using the shortcut again. If capture stops working, check that all three App launch switches from step 3 are still enabled. If the accessibility switch was already turned off, enable it again once after changing the background settings.
+Also try clearing recent apps, then using the shortcut again. Repeat after leaving the phone idle for a while. If capture stops working, recheck [your background settings](#background-setup). On Honor, all three manual App launch switches should be on. If the accessibility switch was already turned off, enable it again once after changing the background settings.
 
 > **To open ScreenGPT Settings later:** long-press its app icon → **Settings**. A normal tap starts capture once setup is done.
 
@@ -151,7 +305,7 @@ If your phone doesn’t offer a suitable button or gesture, use either of these.
 <details>
 <summary><b>Capture stopped working, or the button disappeared</b></summary>
 
-Check that **ScreenGPT screen capture** is still enabled in Accessibility. If it stopped after clearing recent apps, follow **step 3** above—on Honor, all three manual App launch switches need to be enabled.
+Check that **ScreenGPT screen capture** is still enabled in Accessibility. If it stopped after clearing recent apps, follow the [background setup for your brand](#background-setup). On Honor, all three manual App launch switches need to be enabled.
 
 If it still stops, try locking ScreenGPT Settings in the recent-apps screen if your phone offers that option. If Android has switched screenshot access off, enable it again in Accessibility; ScreenGPT cannot grant itself that permission.
 
